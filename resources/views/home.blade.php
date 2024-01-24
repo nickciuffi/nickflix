@@ -2,10 +2,12 @@
 @extends('layouts/app')
 
 @section('content')
-<main>
-    <section class="mt-[80px]">
-        <div class="container">
-            <h1 class="text-blue-500 text-3xl"></h1>
+<main class="bg-primary pt-[40px]">
+    <section class="h-[900px] py-24">
+        <div class="container mx-auto">
+            <h1 class="text-white text-3xl">
+                Filmes
+            </h1>
         </div>
     </section>
 </main>
