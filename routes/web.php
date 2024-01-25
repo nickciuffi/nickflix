@@ -22,3 +22,5 @@ Route::get('/cadastro', function () {
 Route::post('/register-user', [UserController::class, 'registerUser'])->name('register-user');
 
 Route::post('/login-user', [UserController::class, 'loginUser'])->name('login-user');
+
+Route::get('/logout-user', [UserController::class, 'logoutUser'])->name('logout-user');

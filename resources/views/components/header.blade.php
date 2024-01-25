@@ -16,9 +16,15 @@
             </li>
         </ul>
         <ul class="flex justify-start items-center gap-10 ml-auto">
+            @if(session('userName') && session('userId') && session('userEmail'))
+            <li>
+                <a href="{{route('logout-user')}}">{{session('userName')}}</a>
+            </li>
+            @else
             <li>
                 <a href="{{route('login')}}">Entrar</a>
             </li>
+            @endif
         </ul>
     </nav>
 </header>
