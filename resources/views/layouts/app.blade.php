@@ -9,5 +9,19 @@
 <body>
     @include('components.header')
     @yield('content')
+    @if(session('error'))
+            <script>
+                setTimeout(() => {
+                    alert('{{session('error')}}')
+                }, 100);
+            </script>
+    @endif
+    @if(session('success'))
+            <script>
+                setTimeout(() => {
+                    alert('{{session('success')}}')
+                }, 100);
+            </script>
+    @endif
 </body>
 </html>
