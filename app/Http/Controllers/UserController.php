@@ -33,7 +33,7 @@ class UserController extends Controller
             if(!$email || !$password){
                 return redirect()->back()->with('error', 'Você precisa enviar o email e a senha para efetuar o login');
             }
-            $response = User::where([['email', $email]])->first();
+            $response = User::where([['email', $email]])->();
             if(!$response){
                 return redirect()->back()->with('error', 'Usuário não encontrado');
             }
