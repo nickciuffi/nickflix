@@ -1,2 +1,3 @@
+import dropdown from "../js/modules/dropdown";
 
-require("./bootstrap");
+dropdown();

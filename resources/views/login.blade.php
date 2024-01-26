@@ -3,7 +3,7 @@
 
 @section('content')
 <main>
-    <section class="h-[100vh] pt-[40px] bg-primary flex justify-center items-center">
+    <section class="h-[100vh] pt-[50px] bg-primary flex justify-center items-center">
         <article class="container relative bg-zinc-700 text-white h-[700px] max-h-[80%] rounded-[40px] py-10 px-32 flex justify-between items-center">
             <div class="w-[40%] flex flex-col gap-10">
                 <h1 class="text-3xl font-bold">Login</h1>

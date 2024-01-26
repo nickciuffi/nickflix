@@ -70,11 +70,11 @@ class UserController extends Controller
                 return redirect()->back()->with('error', 'Usuário não encontrado');
             }
             if(Hash::check($password, $response->password)){
-                session()->flash('userName', $response->name);
-                session()->flash('userEmail', $response->email);
-                session()->flash('userId', $response->id);
+                session()->put('userName', $response->name);
+                session()->put('userEmail', $response->email);
+                session()->put('userId', $response->id);
+                session()->put('userIsAdmin', $response->is_admin);
                 return redirect()->route('home')->with('success', 'Usuário Logado');
-
             }
             else{
                 return redirect()->back()->with('error', 'Senha incorreta');
@@ -90,6 +90,18 @@ class UserController extends Controller
             session()->forget('userName');
             session()->forget('userId');
             session()->forget('userEmail');
-            return redirect()->back()->with('success', 'Usuário Removido');
+            return redirect()->back()->with('success', 'Conta desconectada');
+        }
+        public static function isLogged(): bool{
+            if(session('userName') && session('userId') && session('userEmail')){
+                return true;
+            }
+            return false;
+        }
+        public static function isAdmin(): bool{
+            if(session('userName') && session('userId') && session('userEmail') && session('userIsAdmin') == '1'){
+                return true;
+            }
+            return false;
         }
     }
