@@ -13,8 +13,31 @@ use function PHPUnit\Framework\isEmpty;
 
 class UserController extends Controller
 {
+    public function checkIfUserExists($email): bool{
+        $response = User::where([['email', $email]])->first();
+        return !!$response;
+    }
+
     public function registerUser(Request $request){
         try{
+            $customMessages = [
+                'email.required' => 'O campo de email é obrigatório',
+                'email.email' => 'Email inválido',
+                'name.required' => 'O campo de nome é obrigatório',
+                'name.min' => 'O nome deve ter pelo menos 3 caracteres',
+                'password.required' => 'O campo de senha é obrigatório',
+                'password.min' => 'A senha deve ter pelo menos :min caracteres',
+                'password.max' => 'A senha deve ter no máximo :max caracteres',
+            ];
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|min:6|max:20',
+                'name' => 'required|min:3'
+            ], $customMessages);
+            $userExists = $this->checkIfUserExists($request->email);
+            if($userExists){
+                return redirect()->back()->with('error', 'Usuário já existe');
+            }
             $user = new User;
             $user->email = $request->email;
             $user->name = $request->name;
@@ -29,20 +52,28 @@ class UserController extends Controller
 
     public function loginUser(Request $request){
         try{
+            $customMessages = [
+                'email.required' => 'O campo de email é obrigatório',
+                'email.email' => 'Email inválido',
+                'password.required' => 'O campo de senha é obrigatório',
+            ];
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ], $customMessages);
+
             $email = $request->email;
             $password = $request->password;
-            if(!$email || !$password){
-                return redirect()->back()->with('error', 'Você precisa enviar o email e a senha para efetuar o login');
-            }
+
             $response = User::where([['email', $email]])->first();
             if(!$response){
                 return redirect()->back()->with('error', 'Usuário não encontrado');
             }
             if(Hash::check($password, $response->password)){
-                session(['userName' => $response->name]);
-                session(['userEmail' => $response->email]);
-                session(['userId' => $response->id]);
-                return redirect()->back()->with('success', 'Usuário Logado');
+                session()->flash('userName', $response->name);
+                session()->flash('userEmail', $response->email);
+                session()->flash('userId', $response->id);
+                return redirect()->route('home')->with('success', 'Usuário Logado');
 
             }
             else{

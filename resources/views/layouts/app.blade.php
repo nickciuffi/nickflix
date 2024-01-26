@@ -9,6 +9,15 @@
 <body>
     @include('components.header')
     @yield('content')
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                setTimeout(() => {
+                    alert('{{$error}}')
+                }, 100);
+            </script>
+        @endforeach
+    @endif
     @if(session('error'))
             <script>
                 setTimeout(() => {
