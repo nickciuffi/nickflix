@@ -2,6 +2,12 @@
 module.exports = {
     content: ["./resources/**/*.blade.php"],
     theme: {
+        container: {
+            padding: {
+                default: "4rem",
+                laptop: "2rem",
+            },
+        },
         extend: {
             screens: {
                 max: { max: "3456px" },

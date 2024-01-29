@@ -1,0 +1,3 @@
+.container {
+    @apply px-16 laptop:px-8;
+}

@@ -1,11 +1,16 @@
+<?php
 
-<header class="w-full fixed top-0 left-0 min-h-[50px] flex items-center justify-center bg-zinc-700 text-white text-base">
-    <nav class="container flex px-20">
+use App\Http\Controllers\UserController;
+
+?>
+
+<header class="w-full fixed top-0 left-0 min-h-[50px] flex items-center justify-center bg-zinc-700 text-white text-base z-20">
+    <nav class="container flex ">
         <ul class="flex justify-start items-center gap-10 ">
             <li>
                 <a href="{{route('home')}}" class="text-xl font-bold">Nickflix</a>
             </li>
-            @if(App\Http\Controllers\UserController::isLogged())
+            @if(UserController::isLogged())
                 <li>
                     <a href="{{route('filmes')}}" class="font-bold">Filmes</a>
                 </li>
@@ -21,7 +26,7 @@
             @endif
         </ul>
         <ul class="flex justify-start items-center gap-10 ml-auto">
-            @if(App\Http\Controllers\UserController::isLogged())
+            @if(UserController::isLogged())
             <li class="relative" >
                 <button id="user-dropdown-activator" class="cursor-pointer font-bold">{{ucfirst(session('userName'))}}</button>
                 <div id="user-dropdown" class="absolute py-4 px-6 bg-secondary shadow-md rounded-md border-solid border-2 border-zinc-300 translate-x-[-50%] left-1/2 top-[30px] hidden">
