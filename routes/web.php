@@ -34,11 +34,19 @@ Route::middleware(['no-login'])->group(function () {
 });
 
 Route::middleware(['admin'])->group(function () {
-    Route::get('/admin/filmes', [MoviesController::class, 'show'])->name('admin-filmes');
+    Route::get('/admin/filmes', [MoviesController::class, 'show'])->name('admin.filmes');
 
-    Route::post('/admin/update/{id}', [MoviesController::class, 'update'])->name('update-film');
+    Route::post('/admin/movie/update-delete/{id}', [MoviesController::class, 'updateOrDelete'])->name('admin.update-or-delete-movie');
+
+    Route::get('/admin/movie/search/', [MoviesController::class, 'searchByName'])->name('admin.search-movie-by-name');
+
+    Route::post('/admin/movie/add', [MoviesController::class, 'add'])->name('admin.add-movie');
+
+    Route::get('/admin/movie/add', function() {
+        return view('admin.add-movies');
+    })->name('admin.add-movie');
 
     Route::get('/admin/admins', function () {
         return view('admin/admins');
-    })->name('admin-admins');
+    })->name('admin.admins');
 });

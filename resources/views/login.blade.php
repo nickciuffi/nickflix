@@ -3,8 +3,8 @@
 
 @section('content')
 <main class="bg-primary relative z-10">
-    <section class="min-h-[100vh] pt-[100px] flex justify-center items-center">
-           <article class="container bg-secondary px-16 text-white min-h-[700px] rounded-[40px] w-[90%] relative py-20 flex justify-between items-center tablet:gap-20 tablet:flex-col tablet:justify-center">
+    <section class="min-h-[100vh] pt-[100px] pb-[50px] flex justify-center items-center">
+           <article class="container bg-secondary px-16 text-white min-h-[600px] rounded-[40px] w-[90%] relative py-20 flex justify-between items-center tablet:gap-20 tablet:flex-col tablet:justify-center">
                 <div class="w-[40%] tablet:w-full flex flex-col gap-10">
                     <h1 class="text-3xl font-bold">Login</h1>
                     <p class="text-xl max-w-[400px]">Entre em sua conta para poder assistir seus filmes e séries.</p>

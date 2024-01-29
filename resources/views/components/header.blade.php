@@ -18,8 +18,8 @@ use App\Http\Controllers\UserController;
                     <a href="{{route('list')}}" class="font-bold">Minha lista</a>
                 </li>
                 <li>
-                    <form action="" class="bg-zinc-500 rounded-md pr-2 flex items-center justify-center">
-                            <input id="title" type="text" class="bg-transparent overflow-hidden focus-visible:ring-0 focus-within:ring-0 focus:ring-0 py-1 px-2"/>
+                    <form action="" method="get" class="bg-zinc-500 rounded-md pr-2 flex items-center justify-center">
+                            <input type="text" name="searchText" class="bg-transparent overflow-hidden focus-visible:ring-0 focus-within:ring-0 focus:ring-0 py-1 px-2"/>
                             <button><x-zondicon-search width="16" /></button>
                     </form>
                 </li>
@@ -36,10 +36,10 @@ use App\Http\Controllers\UserController;
                         </li>
                         @if(session('userIsAdmin'))
                         <li class="flex justify-center">
-                            <a href="{{route('admin-filmes')}}">Gerenciar filmes</a>
+                            <a href="{{route('admin.filmes')}}">Gerenciar filmes</a>
                         </li>
                         <li class="flex justify-center">
-                            <a href="{{route('admin-admins')}}">Gerenciar admins</a>
+                            <a href="{{route('admin.admins')}}">Gerenciar admins</a>
                         </li>
                         @endif
                     </ul>

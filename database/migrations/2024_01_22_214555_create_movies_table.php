@@ -18,8 +18,8 @@ class CreateMoviesTable extends Migration
             $table->string('title')->unique();
             $table->string('description');
             $table->time('duration');
-            $table->string('video-link');
-            $table->string('thumb-link');
+            $table->string('video_link');
+            $table->string('banner_link');
             $table->timestamps();
         });
     }
