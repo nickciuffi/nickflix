@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MoviesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -33,9 +34,9 @@ Route::middleware(['no-login'])->group(function () {
 });
 
 Route::middleware(['admin'])->group(function () {
-    Route::get('/admin/filmes', function () {
-        return view('admin/filmes');
-    })->name('admin-filmes');
+    Route::get('/admin/filmes', [MoviesController::class, 'show'])->name('admin-filmes');
+
+    Route::post('/admin/update/{id}', [MoviesController::class, 'update'])->name('update-film');
 
     Route::get('/admin/admins', function () {
         return view('admin/admins');
