@@ -16,10 +16,10 @@ class CreateMoviesTable extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->string('title')->unique();
-            $table->string('description');
+            $table->string('description', 800);
             $table->time('duration');
-            $table->string('video_link');
-            $table->string('banner_link');
+            $table->string('video_link', 2000)->nullable();
+            $table->string('banner_link', 2000)->nullable();
             $table->timestamps();
         });
     }

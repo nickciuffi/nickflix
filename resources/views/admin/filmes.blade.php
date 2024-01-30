@@ -7,18 +7,21 @@
                 <h1 class="text-3xl mb-8 font-bold">Gerenciar Filmes</h1>
                 <article class="bg-secondary px-8 py-6 -mx-8 rounded-md text-xl">
                     <div class="flex justify-between gap-20 mb-10">
-                        <form action="{{route('admin.search-movie-by-name')}}" method="get" class="bg-primary px-2 focus-within: border-2 flex border-zinc-500 border-solid rounded-sm gap-2">
-                            @csrf
-                            <input type="text" name="searchText" class="py-1 px-2 bg-transparent" placeholder="Example@gmail.com">
-                            <button><x-zondicon-search width="16" /></button>
-                        </form>
+                        <div class="">
+                            <h2 class="mb-2">Pesquisar:</h2>
+                            <form action="{{route('admin.search-movie-by-name')}}" method="get" class="bg-primary px-2 focus-within: border-2 flex border-zinc-500 border-solid rounded-sm gap-2">
+                                @csrf
+                                <input type="text" name="searchText" class="py-1 px-2 bg-transparent" placeholder="Example@gmail.com">
+                                <button><x-zondicon-search width="16" /></button>
+                            </form>
+                        </div>
                         <a href="{{route('admin.add-movie')}}"><x-ri-add-fill width='40' /></a>
                 </div>
 
                     @if (!isset($movies) || sizeof($movies) == 0)
                         <p>Parece que você não possui filmes asdcadastrados.</p>
-
                     @else
+                        <div class="h-[2px] w-[95%] bg-white mx-auto my-10"></div>
                         @foreach ($movies as $movie)
                         <form action="{{route('admin.update-or-delete-movie', $movie->id)}}" method="post">
                             @csrf
@@ -33,15 +36,15 @@
                                 </li>
                                 <li class="flex items-start flex-col gap-2 w-full">
                                     <label for="banner" class="py-1">banner Link:</label>
-                                    <input name="banner" class="bg-primary w-full py-1 border-2 border-zinc-500 border-solid px-2 rounded-sm" type="text" id="banner" value="{{$movie->banner_link}}">
+                                    <input name="banner_link" class="bg-primary w-full py-1 border-2 border-zinc-500 border-solid px-2 rounded-sm" type="text" id="banner" value="{{$movie->banner_link}}">
                                 </li>
                                 <li class="flex items-start flex-col gap-2 w-full">
                                     <label for="video" class="py-1">Video Link:</label>
-                                    <input name="video" class="bg-primary border-2 border-zinc-500 border-solid w-full py-1 px-2 rounded-sm" type="text" id="video" value="{{$movie->video_link}}">
+                                    <input name="video_link" class="bg-primary border-2 border-zinc-500 border-solid w-full py-1 px-2 rounded-sm" type="text" id="video" value="{{$movie->video_link}}">
                                 </li>
                                 <li class="flex items-start flex-col gap-2 w-full col-span-2">
                                     <label for="desc" class="py-1">Descrição:</label>
-                                    <textarea rows="3" name="description" class="bg-primary resize-y w-full py-1 border-2 border-zinc-500 border-solid px-2 rounded-sm" id="desc">
+                                    <textarea rows="4" name="description" class="bg-primary resize-y w-full py-1 border-2 border-zinc-500 border-solid px-2 rounded-sm" id="desc">
                                         {{$movie->description}}
                                     </textarea>
                                 </li>

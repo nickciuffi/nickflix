@@ -10,19 +10,20 @@ class MoviesController extends Controller
 {
     public function index(){
         try{
-        $response = Movie::get();
-        if(!$response) {
-            return redirect()->route('home')->with('error', 'Algo deu errado');
-        }
-        return $response;
-        }
-        catch(QueryException $e){
-            return redirect()->route('home')->with('error', 'Algo deu errado');
-        }
+            $response = Movie::get();
+            if(!$response) {
+                return redirect()->route('home')->with('error', 'Algo deu errado');
+            }
+            return $response;
+            }
+            catch(QueryException $e){
+                return redirect()->route('home')->with('error', 'Algo deu errado');
+            }
     }
 
     public function edit(int $id, Request $request){
         try{
+
             $customMessages = [
                 'title.required' => 'O campo de titulo é obrigatório',
                 'duration.required' => 'O campo de duração é obrigatório',
@@ -35,13 +36,29 @@ class MoviesController extends Controller
                 'description' => 'required',
             ], $customMessages);
 
+            $movie = Movie::where('id', $id)->first();
+            $movie->title = $request->title;
+            $movie->description = $request->description;
+            $movie->duration = $request->duration;
+            $movie->banner_link = $request->banner_link;
+            $movie->video_link = $request->video_link;
+            $movie->save();
+            return redirect()->back()->with('success', 'Filme editado');
+
         }
         catch(QueryException $e){
             return redirect()->back()->with('error', 'Algo deu errado');
         }
     }
-    public function remove(int $id, Request $request){
-        return 'removed '.$id.'title'.$request->title;
+    public function remove(int $id){
+
+        try{
+            Movie::destroy($id);
+            return redirect()->back()->with('success', 'Filme deletado');
+        }
+        catch(QueryException $e){
+            return redirect()->back()->with('error', 'Algo deu errado');
+        }
     }
     public function updateOrDelete($id, Request $request){
         switch($request->action){
@@ -72,21 +89,23 @@ class MoviesController extends Controller
             $customMessages = [
                 'title.required' => 'O campo de titulo é obrigatório',
                 'description.required' => 'O campo de descrição é obrigatório',
-                'banner.required' => 'O campo de link do banner é obrigatório',
                 'duration.required' => 'O campo de duração é obrigatório',
+                'description.max' => 'O campo de descrição tem um limite de 800 caracteres'
             ];
             $request->validate([
                 'title' => 'required',
-                'description' => 'required',
+                'description' => 'required|max:800',
                 'duration' => 'required|hours_and_minutes',
-                'banner' => 'required',
             ], $customMessages);
+
             $movie = new Movie;
             $movie->title = $request->title;
             $movie->description = $request->description;
             $movie->duration = $request->duration;
-            $movie->banner_link = $request->title;
-            $movie->title = $request->title;
+            $movie->banner_link = $request->banner_link;
+            $movie->video_link = $request->video_link;
+            $movie->save();
+            return redirect()->back()->with('success', 'Filme adicionado');
         }
         catch(QueryException $e){
             return redirect()->back()->with('error', 'Algo deu errado');
@@ -95,9 +114,8 @@ class MoviesController extends Controller
 
     public function show(){
         try{
-        $movies = $this->index();
-
-        return view('admin.filmes', ['movies' => $movies]);
+            $movies = $this->index();
+            return view('admin.filmes', ['movies' => $movies]);
         }
         catch(QueryException $e){
             return redirect()->route('home')->with('error', 'Algo deu errado');
