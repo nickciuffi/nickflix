@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MoviesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [HomeController::class, 'show'])->name('home');
 
 Route::post('/register-user', [UserController::class, 'registerUser'])->name('register-user');
 
@@ -15,6 +14,7 @@ Route::post('/login-user', [UserController::class, 'loginUser'])->name('login-us
 Route::get('/logout-user', [UserController::class, 'logoutUser'])->name('logout-user');
 
 Route::middleware(['login'])->group(function () {
+
     Route::get('/lista', function () {
         return view('list');
     })->name('list');

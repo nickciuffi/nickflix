@@ -12,23 +12,24 @@
                                     @csrf
                                 <div class="flex flex-col gap-2">
                                     <span>Pesquisar por titulo:</span>
-                                    <div  class=" gap-2">
-                                        <input type="text" name="searchText" class="py-1 h-[42px] bg-primary px-2 border-2 flex border-zinc-500 border-solid rounded-sm" placeholder="Ex: Vingadores">
+                                    <div class=" gap-2">
+                                        <input value="{{isset($searchText) ? $searchText : ''}}" type="text" name="searchText" class="py-1 h-[42px] bg-primary px-2 border-2 flex border-zinc-500 border-solid rounded-sm" placeholder="Ex: Vingadores">
                                     </div>
                                 </div>
                                 <div class="flex flex-col gap-2">
                                     <span for="orderby">Ordenar por:</span>
                                     <select name="orderBy" id="orderby" class="py-1 h-[42px] px-2 bg-primary border-2 border-zinc-500 border-solid rounded-sm">
                                         <option value="" class="bg-primary"></option>
-                                        <option value="title" class="bg-primary checked:bg-primary hover:bg-primary">Titulo</option>
-                                        <option value="created_at" class="bg-primary">Novidade</option>
+                                        <option value="title" {{isset($orderBy) && $orderBy == 'title' ? 'selected' : ''}} class="bg-primary checked:bg-primary hover:bg-primary">Titulo</option>
+                                        <option value="created_at" {{isset($orderBy) && $orderBy == 'created_at' ? 'selected' : ''}} class="bg-primary">Novidade</option>
                                     </select>
                                 </div>
                                 <div class="flex flex-col gap-2">
                                     <span for="order">Ordem:</span>
                                     <select name="order" id="order" class="py-1 h-[42px] px-2 bg-primary border-2 border-zinc-500 border-solid rounded-sm">
-                                        <option value="asc" class="bg-primary checked:bg-primary hover:bg-primary">Crescente</option>
-                                        <option value="desc" class="bg-primary">Decrescente</option>
+
+                                        <option value="asc" class="bg-primary" {{isset($orderBy) && $order == 'asc' ? 'selected' : ''}}>Crescente</option>
+                                        <option value="desc" class="bg-primary" {{isset($orderBy) && $order == 'desc' ? 'selected' : ''}}>Decrescente</option>
                                     </select>
                                 </div>
                             <button class="px-3 self-end h-[42px] bg-primary border-2 border-zinc-500 border-solid rounded-sm"><x-zondicon-search width="18" /></button>
@@ -38,7 +39,7 @@
                 </div>
 
                     @if (!isset($movies) || sizeof($movies) == 0)
-                        <p>Parece que você não possui filmes asdcadastrados.</p>
+                        <p>Parece que você não possui filmes cadastrados.</p>
                     @else
                         <div class="h-[2px] w-[95%] bg-white mx-auto my-10"></div>
                         @foreach ($movies as $movie)

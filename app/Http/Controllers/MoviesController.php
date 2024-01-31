@@ -83,7 +83,12 @@ class MoviesController extends Controller
             if(!$movies || sizeof($movies) == 0){
                 return redirect()->route('admin.filmes')->with('error', 'Filme não encontrado');
             }
-            return view('admin.filmes', ['movies' => $movies]);
+            $data['movies'] = $movies ?? null;
+            $data['searchText'] = $searchText ?? null;
+            $data['orderBy'] = $orderBy ?? null;
+            $data['order'] = $order ?? null;
+
+            return view('admin.filmes', $data);
         }
         catch(QueryException $e){
             return redirect()->back()->with('error', 'Algo deu errado');
@@ -115,7 +120,7 @@ class MoviesController extends Controller
             return redirect()->back()->with('success', 'Filme adicionado');
         }
         catch(QueryException $e){
-            return redirect()->back()->with('error', 'Algo deu errado');
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 

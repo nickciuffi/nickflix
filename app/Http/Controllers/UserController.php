@@ -90,7 +90,7 @@ class UserController extends Controller
             session()->forget('userName');
             session()->forget('userId');
             session()->forget('userEmail');
-            return redirect()->back()->with('success', 'Conta desconectada');
+            return redirect()->route('login')->with('success', 'Conta desconectada');
         }
         public static function isLogged(): bool{
             if(session('userName') && session('userId') && session('userEmail')){
