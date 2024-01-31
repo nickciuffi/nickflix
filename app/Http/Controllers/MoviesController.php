@@ -71,9 +71,15 @@ class MoviesController extends Controller
 
     public function searchByName(Request $request){
         $searchText = $request->searchText;
-
+        $orderBy = $request->orderBy;
+        $order = $request->order;
         try{
-            $movies = Movie::where('title','like', "%".$searchText."%")->get();
+            if(isset($orderBy)){
+                $movies = Movie::where('title','like', "%".$searchText."%")->orderBy($orderBy, $order)->get();
+            }
+            else{
+                $movies = Movie::where('title','like', "%".$searchText."%")->get();
+            }
             if(!$movies || sizeof($movies) == 0){
                 return redirect()->route('admin.filmes')->with('error', 'Filme não encontrado');
             }
@@ -83,6 +89,7 @@ class MoviesController extends Controller
             return redirect()->back()->with('error', 'Algo deu errado');
         }
     }
+
 
     public function add(Request $request){
         try{

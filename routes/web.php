@@ -38,7 +38,7 @@ Route::middleware(['admin'])->group(function () {
 
     Route::post('/admin/movie/update-delete/{id}', [MoviesController::class, 'updateOrDelete'])->name('admin.update-or-delete-movie');
 
-    Route::get('/admin/movie/search/', [MoviesController::class, 'searchByName'])->name('admin.search-movie-by-name');
+    Route::get('/admin/movie/search/', [MoviesController::class, 'searchByName'])->name('admin.search-movie');
 
     Route::post('/admin/movie/add', [MoviesController::class, 'add'])->name('admin.add-movie');
 

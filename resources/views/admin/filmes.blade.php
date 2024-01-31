@@ -7,15 +7,34 @@
                 <h1 class="text-3xl mb-8 font-bold">Gerenciar Filmes</h1>
                 <article class="bg-secondary px-8 py-6 -mx-8 rounded-md text-xl">
                     <div class="flex justify-between gap-20 mb-10">
-                        <div class="">
-                            <h2 class="mb-2">Pesquisar:</h2>
-                            <form action="{{route('admin.search-movie-by-name')}}" method="get" class="bg-primary px-2 focus-within: border-2 flex border-zinc-500 border-solid rounded-sm gap-2">
-                                @csrf
-                                <input type="text" name="searchText" class="py-1 px-2 bg-transparent" placeholder="Example@gmail.com">
-                                <button><x-zondicon-search width="16" /></button>
+                        <div class="flex items-center gap-4">
+                            <form action="{{route('admin.search-movie')}}" method="get" class="flex gap-4 items-center">
+                                    @csrf
+                                <div class="flex flex-col gap-2">
+                                    <span>Pesquisar por titulo:</span>
+                                    <div  class=" gap-2">
+                                        <input type="text" name="searchText" class="py-1 h-[42px] bg-primary px-2 border-2 flex border-zinc-500 border-solid rounded-sm" placeholder="Ex: Vingadores">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <span for="orderby">Ordenar por:</span>
+                                    <select name="orderBy" id="orderby" class="py-1 h-[42px] px-2 bg-primary border-2 border-zinc-500 border-solid rounded-sm">
+                                        <option value="" class="bg-primary"></option>
+                                        <option value="title" class="bg-primary checked:bg-primary hover:bg-primary">Titulo</option>
+                                        <option value="created_at" class="bg-primary">Novidade</option>
+                                    </select>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <span for="order">Ordem:</span>
+                                    <select name="order" id="order" class="py-1 h-[42px] px-2 bg-primary border-2 border-zinc-500 border-solid rounded-sm">
+                                        <option value="asc" class="bg-primary checked:bg-primary hover:bg-primary">Crescente</option>
+                                        <option value="desc" class="bg-primary">Decrescente</option>
+                                    </select>
+                                </div>
+                            <button class="px-3 self-end h-[42px] bg-primary border-2 border-zinc-500 border-solid rounded-sm"><x-zondicon-search width="18" /></button>
                             </form>
                         </div>
-                        <a href="{{route('admin.add-movie')}}"><x-ri-add-fill width='40' /></a>
+                        <a href="{{route('admin.add-movie')}}"><x-ri-add-fill width='60' /></a>
                 </div>
 
                     @if (!isset($movies) || sizeof($movies) == 0)
