@@ -8,12 +8,12 @@
                 <article class="bg-secondary px-8 py-6 -mx-8 rounded-md text-xl">
                     <div class="flex justify-between gap-20 mb-10">
                         <div class="flex items-center gap-4">
-                            <form action="{{route('admin.search-movie')}}" method="get" class="flex gap-4 items-center">
+                            <form action="{{route('admin.filter-movie')}}" method="get" class="flex gap-4 items-center">
                                     @csrf
                                 <div class="flex flex-col gap-2">
                                     <span>Pesquisar por titulo:</span>
                                     <div class=" gap-2">
-                                        <input value="{{isset($searchText) ? $searchText : ''}}" type="text" name="searchText" class="py-1 h-[42px] bg-primary px-2 border-2 flex border-zinc-500 border-solid rounded-sm" placeholder="Ex: Vingadores">
+                                        <input value="{{isset($title) ? $title : ''}}" type="text" name="title" class="py-1 h-[42px] bg-primary px-2 border-2 flex border-zinc-500 border-solid rounded-sm" placeholder="Ex: Vingadores">
                                     </div>
                                 </div>
                                 <div class="flex flex-col gap-2">
@@ -25,11 +25,11 @@
                                     </select>
                                 </div>
                                 <div class="flex flex-col gap-2">
-                                    <span for="order">Ordem:</span>
-                                    <select name="order" id="order" class="py-1 h-[42px] px-2 bg-primary border-2 border-zinc-500 border-solid rounded-sm">
+                                    <span for="sequence">Ordem:</span>
+                                    <select name="sequence" id="sequence" class="py-1 h-[42px] px-2 bg-primary border-2 border-zinc-500 border-solid rounded-sm">
 
-                                        <option value="asc" class="bg-primary" {{isset($orderBy) && $order == 'asc' ? 'selected' : ''}}>Crescente</option>
-                                        <option value="desc" class="bg-primary" {{isset($orderBy) && $order == 'desc' ? 'selected' : ''}}>Decrescente</option>
+                                        <option value="asc" class="bg-primary" {{isset($orderBy) && $sequence == 'asc' ? 'selected' : ''}}>Crescente</option>
+                                        <option value="desc" class="bg-primary" {{isset($orderBy) && $sequence == 'desc' ? 'selected' : ''}}>Decrescente</option>
                                     </select>
                                 </div>
                             <button class="px-3 self-end h-[42px] bg-primary border-2 border-zinc-500 border-solid rounded-sm"><x-zondicon-search width="18" /></button>
