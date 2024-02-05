@@ -10,7 +10,7 @@ class MoviesController extends Controller
 {
     public function index(){
         try{
-            $response = Movie::get();
+            $response = Movie::orderBy('title', 'asc')->get();
             if(!$response) {
                 return redirect()->route('home')->with('error', 'Algo deu errado');
             }
@@ -23,7 +23,6 @@ class MoviesController extends Controller
 
     public function edit(int $id, Request $request){
         try{
-
             $customMessages = [
                 'title.required' => 'O campo de titulo é obrigatório',
                 'duration.required' => 'O campo de duração é obrigatório',
@@ -69,24 +68,32 @@ class MoviesController extends Controller
         }
     }
 
-    public function searchByName(Request $request){
-        $searchText = $request->searchText;
-        $orderBy = $request->orderBy;
-        $order = $request->order;
+    public function searchMovieWithParams($title, $orderBy, $sequence){
         try{
-            if(isset($orderBy)){
-                $movies = Movie::where('title','like', "%".$searchText."%")->orderBy($orderBy, $order)->get();
-            }
-            else{
-                $movies = Movie::where('title','like', "%".$searchText."%")->get();
-            }
-            if(!$movies || sizeof($movies) == 0){
+
+            $movies = Movie::where('title','like', "%".$title."%")->orderBy($orderBy ?? 'title', $sequence ?? 'asc')->get();
+
+            return $movies;
+        }
+        catch(QueryException $e){
+            return redirect()->back()->with('error', 'Algo deu errado');
+        }
+    }
+
+    public function filterMovie(Request $request){
+        $title = $request->title;
+        $orderBy = $request->orderBy;
+        $sequence = $request->sequence;
+        try{
+            $movies = $this->searchMovieWithParams($title, $orderBy, $sequence);
+
+            if(!isset($movies[0])){
                 return redirect()->route('admin.filmes')->with('error', 'Filme não encontrado');
             }
             $data['movies'] = $movies ?? null;
-            $data['searchText'] = $searchText ?? null;
+            $data['title'] = $title ?? null;
             $data['orderBy'] = $orderBy ?? null;
-            $data['order'] = $order ?? null;
+            $data['sequence'] = $sequence ?? null;
 
             return view('admin.filmes', $data);
         }
