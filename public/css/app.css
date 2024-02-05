@@ -863,12 +863,12 @@ video {
   --tw-gradient-to: rgb(4 21 31 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
-.via-\[\#2a2a31\] {
-  --tw-gradient-to: rgb(42 42 49 / 0)  var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), #2a2a31 var(--tw-gradient-via-position), var(--tw-gradient-to);
+.via-\[\#2f2f35\] {
+  --tw-gradient-to: rgb(47 47 53 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #2f2f35 var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
-.to-\[\#636369\] {
-  --tw-gradient-to: #636369 var(--tw-gradient-to-position);
+.to-\[\#85858a\] {
+  --tw-gradient-to: #85858a var(--tw-gradient-to-position);
 }
 .px-16 {
   padding-left: 4rem;
