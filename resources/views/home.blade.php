@@ -2,8 +2,8 @@
 @extends('layouts/app')
 
 @section('content')
-<main class="bg-primary pt-[50px] text-white bg-gradient-to-br from-primary via-[#2f2f35] to-[#85858a]">
-    <section class="min-h-[calc(100vh-50px)] flex items-center">
+<main class="bg-primary pt-[50px] text-white ">
+    <section class="min-h-[calc(100vh-50px)] flex items-center bg-gradient-to-br from-primary via-[#2a2a31] to-[#636369]">
         <figure class="container mx-auto py-10 flex items-center gap-4">
             <figcaption class="w-[40%]">
                 <h1 class="text-3xl mb-8">
@@ -15,13 +15,15 @@
             <img class="w-[60%] rotate-[-10deg]" src="{{asset('images/home/welcome.png')}}" alt="">
         </figure>
     </section>
-    <section>
-        <div class="container mx-auto">
+    <section class="border-t-4 border-zinc-500 border-solid">
+        <div class="container mx-auto flex items-center justify-between gap-20 py-20 ">
+            <div class="w-[40%]">
             <h2 class="text-3xl mb-8">Como Usar o App?</h2>
             <p class="text-2xl">Para acessar os filmes, primeiramente é necessário acessar sua conta:</p>
-            <div class="">
-                <button>Entrar</button>
-                <button>Registrar</button>
+            </div>
+            <div class="flex flex-col w-min justify-center items-stretch gap-20 py-20">
+                <a href="{{route('login')}}" class="bg-primary px-8 py-6 rounded-md border-4 hover:scale-105 transition-all border-solid text-center border-zinc-500 text-2xl">Entrar</a>
+                <a href="{{route('register')}}" class="bg-primary px-8 py-6 rounded-md border-4 hover:scale-105 transition-all border-solid  border-zinc-500 text-2xl">Registrar</a>
             </div>
         </div>
     </section>
