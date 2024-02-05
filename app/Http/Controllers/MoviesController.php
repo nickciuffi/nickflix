@@ -10,7 +10,7 @@ class MoviesController extends Controller
 {
     public function index(){
         try{
-            $response = Movie::get();
+            $response = Movie::orderBy('title', 'asc')->get();
             if(!$response) {
                 return redirect()->route('home')->with('error', 'Algo deu errado');
             }
@@ -23,7 +23,6 @@ class MoviesController extends Controller
 
     public function edit(int $id, Request $request){
         try{
-
             $customMessages = [
                 'title.required' => 'O campo de titulo é obrigatório',
                 'duration.required' => 'O campo de duração é obrigatório',
@@ -72,7 +71,7 @@ class MoviesController extends Controller
     public function searchMovieWithParams($title, $orderBy, $sequence){
         try{
 
-            $movies = Movie::where('title','like', "%".$title."%")->orderBy($orderBy ?? 'title', $order ?? 'asc')->get();
+            $movies = Movie::where('title','like', "%".$title."%")->orderBy($orderBy ?? 'title', $sequence ?? 'asc')->get();
 
             return $movies;
         }

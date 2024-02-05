@@ -19,7 +19,6 @@
                                 <div class="flex flex-col gap-2">
                                     <span for="orderby">Ordenar por:</span>
                                     <select name="orderBy" id="orderby" class="py-1 h-[42px] px-2 bg-primary border-2 border-zinc-500 border-solid rounded-sm">
-                                        <option value="" class="bg-primary"></option>
                                         <option value="title" {{isset($orderBy) && $orderBy == 'title' ? 'selected' : ''}} class="bg-primary checked:bg-primary hover:bg-primary">Titulo</option>
                                         <option value="created_at" {{isset($orderBy) && $orderBy == 'created_at' ? 'selected' : ''}} class="bg-primary">Novidade</option>
                                     </select>
