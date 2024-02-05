@@ -96,26 +96,30 @@ class MoviesController extends Controller
     }
 
 
+
+
     public function add(Request $request){
         try{
             $customMessages = [
                 'title.required' => 'O campo de titulo é obrigatório',
                 'description.required' => 'O campo de descrição é obrigatório',
                 'duration.required' => 'O campo de duração é obrigatório',
-                'description.max' => 'O campo de descrição tem um limite de 800 caracteres'
+                'description.max' => 'O campo de descrição tem um limite de 800 caracteres',
+                'video.required' => 'O arquivo do vídeo é obrigatório'
             ];
             $request->validate([
                 'title' => 'required',
                 'description' => 'required|max:800',
                 'duration' => 'required|hours_and_minutes',
+                'video' => 'required'
             ], $customMessages);
-
+            FTPController::uploadFile($request->video);
             $movie = new Movie;
             $movie->title = $request->title;
             $movie->description = $request->description;
             $movie->duration = $request->duration;
             $movie->banner_link = $request->banner_link;
-            $movie->video_link = $request->video_link;
+            /* $movie->video = $videoLink; */
             $movie->save();
             return redirect()->back()->with('success', 'Filme adicionado');
         }

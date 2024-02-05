@@ -23,8 +23,9 @@
                                     <input name="banner_link" max="2000" class="bg-primary w-full py-1 border-2 border-zinc-500 border-solid px-2 rounded-sm" type="text" id="banner">
                                 </li>
                                 <li class="flex items-start flex-col gap-2 w-full">
-                                    <label for="video" class="py-1">Video Link:</label>
-                                    <input name="video_link" max="2000" class="bg-primary border-2 border-zinc-500 border-solid w-full py-1 px-2 rounded-sm" type="text" id="video">
+                                    <label for="movie-input-file" class="py-1">Video:</label>
+                                    <label for="movie-input-file" id="movie-input-file-name-shower" class="bg-primary border-2 border-zinc-500 h-[40px] border-solid w-full py-1 px-2 rounded-sms cursor-pointer">Escolha o seu arquivo</label>
+                                    <input name="video" id="movie-input-file" accept="video/x-matroska video/mp4" class="hidden " type="file">
                                 </li>
                                 <li class="flex items-start flex-col gap-2 w-full col-span-2">
                                     <label for="desc" class="py-1">Descrição:</label>

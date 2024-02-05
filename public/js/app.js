@@ -10,8 +10,11 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_modules_dropdown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/modules/dropdown */ "./resources/js/modules/dropdown.js");
+/* harmony import */ var _modules_movieInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/movieInput */ "./resources/js/modules/movieInput.js");
+
 
 (0,_js_modules_dropdown__WEBPACK_IMPORTED_MODULE_0__["default"])();
+(0,_modules_movieInput__WEBPACK_IMPORTED_MODULE_1__["default"])();
 
 /***/ }),
 
@@ -30,6 +33,31 @@ function dropdown() {
   var dropdown = document.getElementById("user-dropdown");
   dropdownBtn.addEventListener("click", function () {
     dropdown.classList.toggle("hidden");
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/modules/movieInput.js":
+/*!********************************************!*\
+  !*** ./resources/js/modules/movieInput.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ movieInput)
+/* harmony export */ });
+function movieInput() {
+  var input = document.getElementById("movie-input-file");
+  var label = document.getElementById("movie-input-file-name-shower");
+  input.addEventListener("change", function () {
+    if (!input.files[0]) return;
+    var name = input.files[0].name;
+    if (name.length > 10) {
+      name = name.substring(0, 10);
+    }
+    label.innerHTML = name;
   });
 }
 
