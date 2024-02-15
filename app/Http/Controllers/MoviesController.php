@@ -5,24 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\confirm;
 
 class MoviesController extends Controller
 {
-    public function index(){
-        try{
+    public function index()
+    {
+        try {
             $response = Movie::orderBy('title', 'asc')->get();
-            if(!$response) {
+            if (!$response) {
                 return redirect()->route('home')->with('error', 'Algo deu errado');
             }
             return $response;
-            }
-            catch(QueryException $e){
-                return redirect()->route('home')->with('error', 'Algo deu errado');
-            }
+        } catch (QueryException $e) {
+            return redirect()->route('home')->with('error', 'Algo deu errado');
+        }
     }
 
-    public function edit(int $id, Request $request){
-        try{
+    public function edit(int $id, Request $request)
+    {
+        try {
             $customMessages = [
                 'title.required' => 'O campo de titulo é obrigatório',
                 'duration.required' => 'O campo de duração é obrigatório',
@@ -44,23 +46,22 @@ class MoviesController extends Controller
             $movie->save();
             return redirect()->back()->with('success', 'Filme editado');
 
-        }
-        catch(QueryException $e){
+        } catch (QueryException $e) {
             return redirect()->back()->with('error', 'Algo deu errado');
         }
     }
-    public function remove(int $id){
-
-        try{
+    public function remove(int $id)
+    {
+        try {
             Movie::destroy($id);
             return redirect()->back()->with('success', 'Filme deletado');
-        }
-        catch(QueryException $e){
+        } catch (QueryException $e) {
             return redirect()->back()->with('error', 'Algo deu errado');
         }
     }
-    public function updateOrDelete($id, Request $request){
-        switch($request->action){
+    public function updateOrDelete($id, Request $request)
+    {
+        switch ($request->action) {
             case 'edit':
                 return $this->edit($id, $request);
             case 'remove':
@@ -68,26 +69,27 @@ class MoviesController extends Controller
         }
     }
 
-    public function searchMovieWithParams($title, $orderBy, $sequence){
-        try{
+    public function searchMovieWithParams($title, $orderBy, $sequence)
+    {
+        try {
 
-            $movies = Movie::where('title','like', "%".$title."%")->orderBy($orderBy ?? 'title', $sequence ?? 'asc')->get();
+            $movies = Movie::where('title', 'like', "%" . $title . "%")->orderBy($orderBy ?? 'title', $sequence ?? 'asc')->get();
 
             return $movies;
-        }
-        catch(QueryException $e){
+        } catch (QueryException $e) {
             return redirect()->back()->with('error', 'Algo deu errado');
         }
     }
 
-    public function filterMovie(Request $request){
+    public function filterMovie(Request $request)
+    {
         $title = $request->title;
         $orderBy = $request->orderBy;
         $sequence = $request->sequence;
-        try{
+        try {
             $movies = $this->searchMovieWithParams($title, $orderBy, $sequence);
 
-            if(!isset($movies[0])){
+            if (!isset($movies[0])) {
                 return redirect()->route('admin.filmes')->with('error', 'Filme não encontrado');
             }
             $data['movies'] = $movies ?? null;
@@ -96,15 +98,15 @@ class MoviesController extends Controller
             $data['sequence'] = $sequence ?? null;
 
             return view('admin.filmes', $data);
-        }
-        catch(QueryException $e){
+        } catch (QueryException $e) {
             return redirect()->back()->with('error', 'Algo deu errado');
         }
     }
 
 
-    public function add(Request $request){
-        try{
+    public function add(Request $request)
+    {
+        try {
             $customMessages = [
                 'title.required' => 'O campo de titulo é obrigatório',
                 'description.required' => 'O campo de descrição é obrigatório',
@@ -125,18 +127,17 @@ class MoviesController extends Controller
             $movie->video_link = $request->video_link;
             $movie->save();
             return redirect()->back()->with('success', 'Filme adicionado');
-        }
-        catch(QueryException $e){
+        } catch (QueryException $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
-    public function show(){
-        try{
+    public function show()
+    {
+        try {
             $movies = $this->index();
             return view('admin.filmes', ['movies' => $movies]);
-        }
-        catch(QueryException $e){
+        } catch (QueryException $e) {
             return redirect()->route('home')->with('error', 'Algo deu errado');
         }
 
