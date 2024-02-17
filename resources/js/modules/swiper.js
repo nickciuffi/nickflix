@@ -5,6 +5,9 @@ const swiper = new Swiper(".movies-swiper", {
     spaceBetween: 10,
     centeredSlides: true,
     loop: true,
+    keyboard: {
+        enabled: true,
+    },
 
     breakpoints: {
         1024: {

@@ -7,6 +7,10 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
+Route::get('/search', [MoviesController::class, 'findByName'])->name('search');
+
+Route::get('/movie/{id}', [MoviesController::class, 'get'])->name('movie');
+
 Route::post('/register-user', [UserController::class, 'registerUser'])->name('register-user');
 
 Route::post('/login-user', [UserController::class, 'loginUser'])->name('login-user');

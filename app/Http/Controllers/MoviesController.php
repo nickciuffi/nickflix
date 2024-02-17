@@ -13,12 +13,32 @@ class MoviesController extends Controller
     {
         try {
             $response = Movie::orderBy('title', 'asc')->get();
-            if (!$response) {
-                return redirect()->route('home')->with('error', 'Algo deu errado');
-            }
+
             return $response;
         } catch (QueryException $e) {
             return redirect()->route('home')->with('error', 'Algo deu errado');
+        }
+    }
+
+    public function get(int $id)
+    {
+        $movie = Movie::where('id', $id)->first();
+        if (!$movie) {
+            return redirect()->route('home')->with('error', 'Filme não encontrado');
+        }
+        $data['movie'] = $movie;
+        return view('movie', $data);
+    }
+
+    public function findByName(Request $request)
+    {
+        try {
+            $searchText = $request->searchText;
+            $movies = $this->searchMovieWithParams($searchText);
+            $data['movies'] = $movies;
+            return view('searchedMovies', $data);
+        } catch (QueryException $e) {
+            return redirect()->back()->with('error', 'Algo deu errado');
         }
     }
 
@@ -65,15 +85,15 @@ class MoviesController extends Controller
             case 'edit':
                 return $this->edit($id, $request);
             case 'remove':
-                return $this->remove($id, $request);
+                return $this->remove($id);
         }
     }
 
-    public static function searchMovieWithParams(string $title, string $orderBy, string $sequence)
+    public static function searchMovieWithParams($title, $orderBy = "title", $sequence = "asc")
     {
         try {
 
-            $movies = Movie::where('title', 'like', "%" . $title . "%")->orderBy($orderBy ?? 'title', $sequence ?? 'asc')->get();
+            $movies = Movie::where('title', 'like', "%" . $title . "%")->orderBy($orderBy, $sequence)->take(12)->get();
 
             return $movies;
         } catch (QueryException $e) {
@@ -136,6 +156,9 @@ class MoviesController extends Controller
     {
         try {
             $movies = $this->index();
+            if (class_basename($movies) == "RedirectResponse") {
+                return view('admin.filmes', ['movies' => []]);
+            }
             return view('admin.filmes', ['movies' => $movies]);
         } catch (QueryException $e) {
             return redirect()->route('home')->with('error', 'Algo deu errado');
