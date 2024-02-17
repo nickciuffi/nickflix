@@ -69,7 +69,7 @@ class MoviesController extends Controller
         }
     }
 
-    public function searchMovieWithParams($title, $orderBy, $sequence)
+    public static function searchMovieWithParams(string $title, string $orderBy, string $sequence)
     {
         try {
 

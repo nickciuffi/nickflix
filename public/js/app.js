@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./resources/js/app.js":
@@ -8,9 +7,13 @@
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_modules_dropdown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/modules/dropdown */ "./resources/js/modules/dropdown.js");
 /* harmony import */ var _modules_alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/alert */ "./resources/js/modules/alert.js");
+/* harmony import */ var _modules_swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/swiper */ "./resources/js/modules/swiper.js");
+/* harmony import */ var _modules_swiper__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_swiper__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 (0,_modules_alert__WEBPACK_IMPORTED_MODULE_1__.initAlert)();
@@ -24,6 +27,7 @@ __webpack_require__.r(__webpack_exports__);
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   initAlert: () => (/* binding */ initAlert)
@@ -106,6 +110,7 @@ function initAlert() {
   \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ dropdown)
@@ -131,12 +136,40 @@ function dropdown() {
 
 /***/ }),
 
+/***/ "./resources/js/modules/swiper.js":
+/*!****************************************!*\
+  !*** ./resources/js/modules/swiper.js ***!
+  \****************************************/
+/***/ (() => {
+
+var swiper = new Swiper(".movies-swiper", {
+  // Optional parameters
+  direction: "horizontal",
+  slidesPerView: 2,
+  spaceBetween: 10,
+  centeredSlides: true,
+  loop: true,
+  breakpoints: {
+    1024: {
+      slidesPerView: 4
+    }
+  },
+  // Navigation arrows
+  navigation: {
+    nextEl: "#swiper-btn-next",
+    prevEl: "#swiper-btn-prev"
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/css/app.css":
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
   \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -202,6 +235,18 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

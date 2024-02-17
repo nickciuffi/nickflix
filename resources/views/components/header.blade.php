@@ -12,9 +12,9 @@ use App\Http\Controllers\UserController;
                 <a href="{{ route('home') }}" class="text-xl font-bold">Nickflix</a>
             </li>
             @if (UserController::isLogged())
-                <li>
+                {{-- <li>
                     <a href="{{ route('filmes') }}" class="font-bold">Filmes</a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{ route('list') }}" class="font-bold">Minha lista</a>
                 </li>

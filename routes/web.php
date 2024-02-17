@@ -18,9 +18,7 @@ Route::middleware(['login'])->group(function () {
     Route::get('/lista', function () {
         return view('list');
     })->name('list');
-    Route::get('/filmes', function () {
-        return view('filmes');
-    })->name('filmes');
+
 });
 
 Route::middleware(['no-login'])->group(function () {
@@ -42,7 +40,7 @@ Route::middleware(['admin'])->group(function () {
 
     Route::post('/admin/movie/add', [MoviesController::class, 'add'])->name('admin.add-movie');
 
-    Route::get('/admin/movie/add', function() {
+    Route::get('/admin/movie/add', function () {
         return view('admin.add-movies');
     })->name('admin.add-movie');
 
