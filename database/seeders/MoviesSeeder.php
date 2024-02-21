@@ -45,8 +45,6 @@ class MoviesSeeder extends Seeder
 
     public function run(): void
     {
-        $faker = Faker::create();
-
         // Generate 50 movies
         for ($i = 0; $i < 50; $i++) {
             Movie::create([

@@ -4,13 +4,14 @@
 @section('content')
 <main class="bg-primary pt-[50px] text-white ">
     <section class="min-h-[calc(100vh-50px)] flex items-center bg-gradient-to-br from-primary via-[#2a2a31] to-[#636369]">
-        <figure class="container mx-auto py-10 flex items-center gap-4">
+        <figure class="container mx-auto py-10 flex items-center gap-6">
             <figcaption class="w-[40%]">
                 <h1 class="text-3xl mb-8">
                     Bem Vindo(a) ao NickFlix
                 </h1>
-                <p class="text-2xl">Este é um projeto feito por Nicolas Ciuffi, como forma de estudo no framework Laravel PHP.</p>
-                <p class="text-2xl">O projeto consiste em um sistema de streaming de filmes</p>
+                <p class="text-xl">Este é um projeto feito por Nicolas Ciuffi, como forma de estudo no framework Laravel PHP.</p>
+                <p class="text-xl">O projeto consiste em uma simulação de um sistema de streaming de filmes.</p>
+                <p class="text-xl">Nenhum filme "pirata" foi utilizado neste projeto, já que ele consiste apenas em uma simulação para estudo.</p>
             </figcaption>
             <img class="w-[60%] rotate-[-10deg]" src="{{asset('images/home/welcome.png')}}" alt="">
         </figure>
