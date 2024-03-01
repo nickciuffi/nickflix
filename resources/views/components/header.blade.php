@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 <header
     class="w-full fixed top-0 left-0 min-h-[50px] flex items-center justify-center bg-zinc-800 text-white text-base z-20 shadow-xl">
     <nav class="container flex ">
-        <ul class="flex justify-start items-center gap-10 ">
+        <ul class="flex justify-start items-center gap-10 tablet:gap-4">
             <li>
                 <a href="{{ route('home') }}" class="text-xl font-bold">Nickflix</a>
             </li>
@@ -15,9 +15,11 @@ use App\Http\Controllers\UserController;
                 {{-- <li>
                     <a href="{{ route('filmes') }}" class="font-bold">Filmes</a>
                 </li> --}}
-                <li>
+                {{--
+                    Ainda não disponivel
+                    <li>
                     <a href="{{ route('list') }}" class="font-bold">Minha lista</a>
-                </li>
+                </li> --}}
             @endif
         </ul>
         <ul class="flex justify-start items-center gap-10 ml-auto">
