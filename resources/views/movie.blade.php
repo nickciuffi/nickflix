@@ -6,15 +6,11 @@
             <div class="container mx-auto py-10">
                 <h1 class="text-3xl mb-8">{{ $movie->title }}</h1>
                 @if ($movie->video_link)
-                    {{-- <video controls class="w-full">
+                    <video controls class="w-full">
 
-                        <source src={{ 'Google.com' . '/' $movie->video_link }}>
+                        <source src={{ $movie->video_link }}>
                         <source src="https://player.vimeo.com/video/911301721?h=9142c10a6a&autoplay=0&pip=0">
-                    </video> --}}
-                    <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/ECYfd4X9Tgc?si=ros4eOu1mZznQkQa"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
+                    </video>
                 @else
                     <p>Video indisponível</p>
                 @endif

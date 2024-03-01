@@ -74,7 +74,7 @@ class UserController extends Controller
                 session()->put('userEmail', $response->email);
                 session()->put('userId', $response->id);
                 session()->put('userIsAdmin', $response->is_admin);
-                return redirect()->route('home')->with('success', 'Usuário Logado');
+                return redirect()->route('home');
             }
             else{
                 return redirect()->back()->with('error', 'Senha incorreta');
