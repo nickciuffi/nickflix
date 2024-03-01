@@ -71,6 +71,20 @@
                                             type="time" id="duration" value="{{ substr($movie->duration, 0, -3) }}">
                                     </li>
                                     <li class="flex items-start flex-col gap-2 w-full">
+                                        <label for="category" class="py-1">Categoria:</label>
+                                        <select name="category" required
+                                            class="bg-primary w-full py-1 border-2 border-zinc-500 border-solid px-2 rounded-sm"
+                                            type="text" id="category">
+                                            <option value="{{ $movie->category }}">{{ $movie->category }}</option>
+                                            <option value="Ação">Ação </option>
+                                            <option value="Aventura">Aventura</option>
+                                            <option value="Comédia">Comédia</option>
+                                            <option value="Drama">Drama</option>
+                                            <option value="Romance">Romance</option>
+                                            <option value="Terror">Terror</option>
+                                        </select>
+                                    </li>
+                                    <li class="flex items-start flex-col gap-2 w-full">
                                         <label for="banner" class="py-1">banner Link:</label>
                                         <input name="banner_link"
                                             class="bg-primary w-full py-1 border-2 border-zinc-500 border-solid px-2 rounded-sm"
@@ -81,6 +95,12 @@
                                         <input name="video_link"
                                             class="bg-primary border-2 border-zinc-500 border-solid w-full py-1 px-2 rounded-sm"
                                             type="text" id="video" value="{{ $movie->video_link }}">
+                                    </li>
+                                    <li class="flex items-start flex-col gap-2 w-full">
+                                        <label for="subtitles" class="py-1">legenda Link:</label>
+                                        <input name="subtitles_link" max="100"
+                                            class="bg-primary border-2 border-zinc-500 border-solid w-full py-1 px-2 rounded-sm"
+                                            type="text" id="subtitles" value="{{ $movie->subtitles_link }}">
                                     </li>
                                     <li class="flex items-start flex-col gap-2 w-full col-span-2">
                                         <label for="desc" class="py-1">Descrição:</label>

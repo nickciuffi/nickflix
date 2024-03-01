@@ -18,6 +18,8 @@ class CreateMoviesTable extends Migration
             $table->string('title')->unique();
             $table->string('description', 800);
             $table->time('duration');
+            $table->string('category', 100);
+            $table->string('subtitles_link', 2000)->nullable();
             $table->string('video_link', 2000)->nullable();
             $table->string('banner_link', 2000)->nullable();
             $table->timestamps();

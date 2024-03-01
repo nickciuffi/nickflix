@@ -7,9 +7,10 @@
                 <h1 class="text-3xl mb-8">{{ $movie->title }}</h1>
                 @if ($movie->video_link)
                     <video controls class="w-full">
-
                         <source src={{ $movie->video_link }}>
-                        <source src="https://player.vimeo.com/video/911301721?h=9142c10a6a&autoplay=0&pip=0">
+                        @if ($movie->subtitles_link)
+                            <track src="{{ $movie->subtitles_link }}" kind="subtitles" srclang="pt" label="Português">
+                        @endif
                     </video>
                 @else
                     <p>Video indisponível</p>

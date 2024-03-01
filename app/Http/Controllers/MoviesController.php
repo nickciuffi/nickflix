@@ -49,18 +49,23 @@ class MoviesController extends Controller
                 'title.required' => 'O campo de titulo é obrigatório',
                 'duration.required' => 'O campo de duração é obrigatório',
                 'duration.hours_and_minutes' => 'A duração deve ser no formato (horas:minutos)',
-                'description.required' => 'O campo de descrição é obrigatório'
+                'description.required' => 'O campo de descrição é obrigatório',
+                'description.max' => 'O campo de descrição tem um limite de 800 caracteres',
+                'category.required' => 'O campo de cateforia é obrigatório',
+                'category.max' => 'O campo de categoria tem um limite de 100 caracteres'
             ];
             $request->validate([
                 'title' => 'required',
                 'duration' => 'required|hours_and_minutes',
-                'description' => 'required',
+                'description' => 'required|max:800',
+                'category' => 'required|max:100'
             ], $customMessages);
-
             $movie = Movie::where('id', $id)->first();
             $movie->title = $request->title;
             $movie->description = $request->description;
             $movie->duration = $request->duration;
+            $movie->category = $request->category;
+            $movie->subtitles_link = $request->subtitles_link;
             $movie->banner_link = $request->banner_link;
             $movie->video_link = $request->video_link;
             $movie->save();
@@ -131,19 +136,24 @@ class MoviesController extends Controller
                 'title.required' => 'O campo de titulo é obrigatório',
                 'description.required' => 'O campo de descrição é obrigatório',
                 'duration.required' => 'O campo de duração é obrigatório',
-                'description.max' => 'O campo de descrição tem um limite de 800 caracteres'
+                'description.max' => 'O campo de descrição tem um limite de 800 caracteres',
+                'category.required' => 'O campo de cateforia é obrigatório',
+                'category.max' => 'O campo de categoria tem um limite de 100 caracteres'
             ];
             $request->validate([
                 'title' => 'required',
                 'description' => 'required|max:800',
                 'duration' => 'required|hours_and_minutes',
+                'category' => 'required|max:100'
             ], $customMessages);
 
             $movie = new Movie;
             $movie->title = $request->title;
             $movie->description = $request->description;
             $movie->duration = $request->duration;
+            $movie->category = $request->category;
             $movie->banner_link = $request->banner_link;
+            $movie->subtitles_link = $request->subtitles_link;
             $movie->video_link = $request->video_link;
             $movie->save();
             return redirect()->back()->with('success', 'Filme adicionado');
