@@ -47,7 +47,7 @@
                                         width="18" /></button>
                             </form>
                         </div>
-                        <a href="{{ route('admin.add-movie') }}"><x-ri-add-fill width='60' /></a>
+                        <a href="{{ route('admin.add-movie-page') }}"><x-ri-add-fill width='60' /></a>
                     </div>
 
                     @if (!isset($movies) || sizeof($movies) == 0)
