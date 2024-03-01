@@ -46,7 +46,7 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('/admin/movie/add', function () {
         return view('admin.add-movies');
-    })->name('admin.add-movie');
+    })->name('admin.add-movie-page');
 
     Route::get('/admin/admins', function () {
         return view('admin/admins');
