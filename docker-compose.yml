@@ -1,0 +1,15 @@
+# Use root/example as user/password credentials
+version: "3.1"
+
+services:
+    db:
+        image: mysql:latest
+        container_name: nickflix-db
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: Niisaricris1
+            MYSQL_DATABASE: nickflix
+            MYSQL_USER: nickciuffi
+            MYSQL_PASSWORD: Niisaricris1
+        ports:
+            - 3306:3306
