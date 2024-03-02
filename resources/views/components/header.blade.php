@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 ?>
 
 <header
-    class="w-full fixed top-0 left-0 min-h-[50px] flex items-center justify-center bg-zinc-800 text-white text-base z-20 shadow-xl">
+    class="w-full fixed top-0 left-0 min-h-[50px] flex items-center justify-center bg-zinc-800 text-white text-base z-50 shadow-xl">
     <nav class="container flex ">
         <ul class="flex justify-start items-center gap-10 tablet:gap-4">
             <li>
