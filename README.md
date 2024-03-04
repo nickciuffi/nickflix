@@ -1,16 +1,16 @@
 # Nickflix
 <br>
-This project is a Web Application that simulates a complete streaming App.<br>
+This project is a Web application that simulates a complete streaming app.<br>
 In this Repo, you can access the code of the main part of the project, the Web part, where all the users can create accounts, log in, see all the available movies and watch these movies, while only the admins can create, edit and remove movies.<br>
-The video files that the Web application consumes and the project itself are all stored and hosted in my local server (used to be an old PC).<br><br>
+The video files that the Web application consumes and the project itself are all stored and hosted on my local server, (used to be an old PC).<br><br>
 
-# Tech stack:
+# Tech Stack:
 <br>
-This part of the project was entirelly build with the Laravel framework, the PHP language and tailwindCSS to style the blade files.<br><br>
+This part of the project was entirely build with the Laravel framework, the PHP language and TailwindCSS to style the Blade files.<br><br>
 
 # Conclusion
 <br>
-Managing docker containers, configuring nginx and creating a FTP server were the hardest parts of this project, in which I could learn a lot and get lots of experience, with tools that are very common in the tech field.<br><br>
+Managing Docker containers, configuring Nginx and creating a FTP server were the hardest parts of this project, in which I could learn a lot and get lots of experience, with tools that are very common in the tech field.<br><br>
 
 Prints:<br>
 
@@ -25,5 +25,5 @@ Main Logged screen<br>
 Movie Screen:<br>
 ![image](https://github.com/nickciuffi/nickflix/assets/86213451/8d9f1254-21bf-496a-8deb-c30d1c3a8b05)<br><br>
 
-Ps: This project was build exclusivelly for learning purposes, so it is clear that only testing videos were used in this project.
+This project was built exclusively for learning purposes, so it is clear that only testing videos were used in this project.
 
